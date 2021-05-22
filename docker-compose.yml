@@ -1,0 +1,19 @@
+version: '3.7'
+
+services:
+  traefik:
+    image: traefik
+    command: --web --docker --docker.domain=docker.localhost
+    ports:
+      - 80:80
+      - 8080:8080
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - iva_network
+    labels:
+      - traefik.enable=false
+
+networks:
+  iva_network:
+      name: iva_network
